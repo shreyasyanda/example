@@ -575,7 +575,7 @@
   }
 </style>
 
-<section style="font-family: 'Fustat', sans-serif; padding: 0; margin-left: 22.5px; margin-right: 22.5px;">
+<section style="font-family: 'Fustat', sans-serif; padding: 0;margin:30px;">
   <div class="services-section">
     <!-- LEFT SIDE -->
     <div class="services-header">
@@ -871,7 +871,7 @@
     padding: 100px 0;
     font-family: 'Fustat', sans-serif;
     display: flex;
- margin:0px 22.5px;
+ margin:30px;
     flex-wrap: wrap;
     gap: 100px;
     border-radius: 30px;
@@ -1561,7 +1561,7 @@
       justify-content: center;
       flex-wrap: wrap;
       border-radius: 30px;
-      margin: 22.5px;
+      margin:30px;
       min-height: 100vh;
       box-sizing: border-box;
     }
@@ -1856,7 +1856,7 @@ margin-right:100px;}
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px; margin-bottom:50px;
+ margin-bottom:50px;
     margin-top: 60px;
   }
 
@@ -1866,7 +1866,7 @@ margin-right:100px;}
     max-width: 500px;
     background-color: #f8f8f8;
     padding: 30px;
-    border-radius: 30px; margin-left:20px; margin-right:20px;
+    border-radius: 30px; margin-left:20px; margin-right:20px; margin-bottom:30px;
   }
 
   .feature-icon {
@@ -1964,9 +1964,13 @@ margin-right:100px;}
     <div class="top-text">
       <div class="top-heading-row">
         <h2>Automate. Accelerate. Achieve</h2>
-        <div class="watch-button">
-          <a href="#">▶️&nbsp;Watch Video</a>
-        </div>
+       <div class="watch-button">
+  <a href="#" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: bold; color: #000;">
+    <svg fill="#000000" width="40px" height="40px" viewBox="0 -0.4 26.4 26.4" xmlns="http://www.w3.org/2000/svg"><title>video</title><path d="M13.2 22.8q-2.65 0 -5 -1.35 -2.3 -1.35 -3.65 -3.65T3.2 12.8t1.35 -5 3.65 -3.65 5 -1.35 5 1.35 3.65 3.65 1.35 5q0 2.65 -1.35 5 -1.35 2.3 -3.65 3.65t-5 1.35m4.05 -10 -6.45 -4.8v9.6z"/></svg>
+    Watch Video
+  </a>
+</div>
+
       </div>
       <p>
         Elevate Your Testing Processes: Transform your testing approach with TestEnsure’s state-of-the-art automation platform. Designed to streamline and enhance every aspect of your testing workflow, TestEnsure offers a user-friendly interface, extensive compatibility, and cutting-edge technology.
@@ -2040,7 +2044,7 @@ margin-right:100px;}
 
     .main-container {
       background: white;
-      margin: 22.5px;
+      margin: 22.5px; overflow:hidden;
       border-radius: 30px;
       padding: 100px 0;
       box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -2147,6 +2151,32 @@ margin-right:100px;}
   color: black;
   font-weight: 600;
 }
+.cards-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.fade-left,
+.fade-right {
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.fade-left {
+  left: 0;
+  background: linear-gradient(to right, #f0f0f0 0%, transparent 100%);
+}
+
+.fade-right {
+  right: 0;
+  background: linear-gradient(to left, #f0f0f0 0%,transparent 100%);
+}
 
     .card p {
       font-size: 16px; text-align:left;
@@ -2230,7 +2260,8 @@ margin-right:100px;}
   </div>
 
   <!-- Scrolling Cards -->
-  <div class="cards-wrapper">
+  <div class="cards-wrapper">  <div class="fade-left"></div>
+  <div class="fade-right"></div>
     <div class="cards" id="scrollCards">
        <div class="card">
   <h4>Increased Test Coverage</h4>
@@ -2735,7 +2766,7 @@ font-weight: 700;
   }
 </style>
 
-<div style="background-color:#0b2e2e; padding: 100px 0px; font-family: 'Fustat', sans-serif; display: flex; margin-left:22.5px; margin-right:22.5px;
+<div style="background-color:#0b2e2e; padding: 100px 0px; font-family: 'Fustat', sans-serif; display: flex; margin:30px;
     flex-wrap: wrap;
     gap: 100px; 
     border-radius: 30px;
