@@ -2036,7 +2036,6 @@ margin-right:100px;}
   <title>ROI Section with Working Pause/Resume</title>
   <link href="https://fonts.googleapis.com/css2?family=Fustat&display=swap" rel="stylesheet">
   <style>
-
     body {
       font-family: 'Fustat', sans-serif;
       overflow-x: hidden;
@@ -2044,7 +2043,8 @@ margin-right:100px;}
 
     .main-container {
       background: white;
-      margin: 22.5px; overflow:hidden;
+      margin: 22.5px;
+      overflow: hidden;
       border-radius: 30px;
       padding: 100px 0;
       box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -2107,6 +2107,7 @@ margin-right:100px;}
     }
 
     .cards-wrapper {
+      position: relative;
       overflow: hidden;
       width: 100%;
       padding: 0 20px;
@@ -2145,42 +2146,40 @@ margin-right:100px;}
       margin-bottom: 10px;
       background: linear-gradient(267.43deg, #73ed7c 4.95%, #019297 97.92%);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; text-align:center;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
     }
-.heading-txt {
-  color: black;
-  font-weight: 600;
-}
-.cards-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding: 0 20px;
-}
 
-.fade-left,
-.fade-right {
-  position: absolute;
-  top: 0;
-  width: 80px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.fade-left {
-  left: 0;
-  background: linear-gradient(to right, #f0f0f0 0%, transparent 100%);
-}
-
-.fade-right {
-  right: 0;
-  background: linear-gradient(to left, #f0f0f0 0%,transparent 100%);
-}
+    .heading-txt {
+      color: black;
+      font-weight: 600;
+    }
 
     .card p {
-      font-size: 16px; text-align:left;
+      font-size: 16px;
+      text-align: left;
       color: #8f8f8f;
+    }
+
+    /* Fade Effects */
+    .fade-left,
+    .fade-right {
+      position: absolute;
+      top: 0;
+      width: 80px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .fade-left {
+      left: 0;
+      background: linear-gradient(to right, #ffffff 80%, transparent 100%);
+    }
+
+    .fade-right {
+      right: 0;
+      background: linear-gradient(to left, #ffffff 80%, transparent 100%);
     }
 
     /* Pause/Resume Button */
@@ -2239,6 +2238,11 @@ margin-right:100px;}
       .cards {
         animation-duration: 120s;
       }
+
+      .fade-left,
+      .fade-right {
+        width: 40px;
+      }
     }
   </style>
 </head>
@@ -2260,10 +2264,11 @@ margin-right:100px;}
   </div>
 
   <!-- Scrolling Cards -->
-  <div class="cards-wrapper">  <div class="fade-left"></div>
-  <div class="fade-right"></div>
+  <div class="cards-wrapper">
+    <div class="fade-left"></div>
+    <div class="fade-right"></div>
     <div class="cards" id="scrollCards">
-       <div class="card">
+     <div class="card">
   <h4>Increased Test Coverage</h4>
   <p><span class="heading-txt">Comprehensive Testing:</span> TestEnsure allows you to automate a wide range of tests, including unit, integration, functional, and regression tests. This ensures thorough coverage of your application, identifying defects early and reducing the risk of post-release issues.</p>
   <p><span class="heading-txt">Parallel Execution:</span> The platform supports parallel test execution, enabling you to run multiple tests simultaneously. This accelerates the testing process and ensures faster feedback.</p>
@@ -2349,10 +2354,12 @@ margin-right:100px;}
 </div>
     </div>
   </div>
- <div class="card-controls">
+
+  <div class="card-controls">
     <button class="pause-toggle" id="pauseToggle">⏸ Pause Scrolling</button>
   </div>
 </div>
+
 <script>
   // Image slider auto switch
   let currentSlide = 0;
@@ -2774,7 +2781,7 @@ font-weight: 700;
     align-items: center;
     position: relative;">
   <!-- Image on Left -->
-  <div style="flex: 1; min-width: 300px; text-align: center;">
+  <div style="flex: 1; min-width: 300px; text-align: center; padding:100px 0 100px 100px;">
     <img src="https://testensure.com/wp-content/uploads/2024/09/Integrations-flat.svg" alt="Integrations" style="max-width: 100%; height: auto;">
   </div>
 
@@ -2791,10 +2798,10 @@ font-weight: 700;
       Integrations
     </h2>
     
-    <p style="color: rgb(255,255,255); font-size: 16px; font-weight: 400; line-height: 1.6;">
+    <p style="color: rgb(255,255,255); font-size: 16px; font-weight: 400; line-height: 1.6;padding-right:20px;">
       TestEnsure comes with Jenkins as CI/CD pipeline and Jira for Issue logging and tracking.
     </p>
-    <p style="color: rgb(255,255,255);font-size: 16px;font-weight: 400;line-height: 1.6;margin-right: 0px;padding-right: 202px;">
+    <p style="color: rgb(255,255,255);font-size: 16px;font-weight: 400;line-height: 1.6;margin-right: 0px;padding-right: 20px;">
       TestEnsure is designed to integrate with many popular tools. You can use TestEnsure with your favorite issue tracking tool, submit test results from any test automation tool, integrate TestEnsure with your CI/CD workflow and log in with third-party authentication providers.
     </p>
   </div>
