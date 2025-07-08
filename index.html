@@ -1209,22 +1209,13 @@
   .automate-right {
     flex: 1;
     min-width: 300px;
-    transition: transform 0.4s ease;
-  }
-
-  .automate-left.shift-left {
-    transform: translateX(-50px);
-  }
-
-  .automate-right.shift-right {
-    transform: translateX(50px);
   }
 
   .automate-title {
     font-weight: 300;
-    font-size: 40px;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     color: rgb(4, 42, 45);
-    line-height: 1.2;
+    line-height: 1.3;
   }
 
   .automate-highlight {
@@ -1247,33 +1238,16 @@
     border-radius: 30px;
     text-decoration: none;
     font-weight: bold;
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
     display: inline-block;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 
-  .automate-popup-column {
-    flex: 1 1 100%;
-    max-width: 800px;
-    display: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .automate-popup-column.active {
-    display: block;
-  }
-
-  .arrow {
-    transition: transform 0.3s ease;
-    margin-left: auto;
-    max-width: 16px;
-    height: auto;
-  }
-
-  .coaching-wrapper.active .arrow1 {
-    transform: rotate(90deg);
-  }
-
-  .coaching-wrapper.active .arrow {
-    transform: rotate(120deg);
+  .automate-button:hover {
+    background-color: #2ab56b;
+    transform: translateY(-2px);
   }
 
   .coaching-popup {
@@ -1282,9 +1256,12 @@
     padding: 20px;
     border-radius: 16px;
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-    font-size: 14px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     line-height: 1.6;
     animation: fadeIn 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 16px;
   }
 
   .coaching-popup h4 {
@@ -1326,7 +1303,8 @@
   .coaching-pill svg {
     flex-shrink: 0;
     width: 40px;
-    border-radius: 50%;   object-fit: cover; 
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   .coaching-pill span {
@@ -1338,6 +1316,21 @@
 
   .coaching-hidden {
     display: none;
+  }
+
+  .coaching-wrapper.active .coaching-hidden {
+    display: block;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+    margin-left: auto;
+    max-width: 16px;
+    height: auto;
+  }
+
+  .coaching-wrapper.active .arrow1 {
+    transform: rotate(180deg);
   }
 
   @keyframes fadeIn {
@@ -1358,47 +1351,54 @@
       padding: 40px 20px;
     }
 
-    .automate-popup-column {
-      order: 2;
-      margin: 20px 0;
-    }
-
     .coaching-grid {
       grid-template-columns: 1fr;
-    }
-
-    .automate-left.shift-left,
-    .automate-right.shift-right {
-      transform: none;
     }
   }
 
   @media (max-width: 480px) {
-
     .automate-button {
       width: 100%;
       text-align: center;
+      font-size: 1rem;
+      padding: 12px 16px;
+      box-sizing: border-box;
     }
 
     .coaching-pill {
-      flex-direction: row;
-      gap: 12px;
       flex-wrap: wrap;
+      align-items: center;
+      padding: 10px;
+      gap: 10px;
+      box-sizing: border-box;
     }
 
     .coaching-pill span {
       flex: 1 1 100%;
-      margin-left: 0;
-      margin-top: 8px;
+      margin: 5px 0 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .coaching-pill img,
+    .coaching-pill svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .arrow1 {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
     }
   }
 </style>
 
 <section class="automate-section">
-  <div class="automate-container" id="automateContainer">
-
-    <!-- Left Column -->
-    <div class="automate-left" id="leftContent">
+  <div class="automate-container">
+    <div class="automate-left">
       <p class="automate-title">
         What You Can <span class="automate-highlight">Automate?</span>
       </p>
@@ -1410,13 +1410,7 @@
       <a href="#" class="automate-button">Contact Now →</a>
     </div>
 
-    <!-- Center Column (Popup) -->
-    <div class="automate-popup-column" id="popupColumn">
-      <div class="coaching-popup" id="activePopup"></div>
-    </div>
-
-    <!-- Right Column -->
-    <div class="automate-right" id="rightContent">
+    <div class="automate-right">
       <div class="coaching-grid">
         <!-- Card 1 -->
         <div class="coaching-wrapper" onclick="showPopup(event, this)">
@@ -1424,6 +1418,7 @@
 <svg width="30px" height="30px" viewBox="0 0 30 30" id="icon" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title>integration</title><path d="m28.012 14.55 -5.625 -10.313A0.938 0.938 0 0 0 21.563 3.75H8.438a0.938 0.938 0 0 0 -0.825 0.488l-5.625 10.313a0.938 0.938 0 0 0 0 0.938l5.625 10.313A0.938 0.938 0 0 0 8.438 26.25h13.125a0.938 0.938 0 0 0 0.825 -0.488l5.625 -10.313a0.938 0.938 0 0 0 0 -0.9M21.497 6.563l4.116 7.5h-8.906ZM15 13.256 10.144 5.625h9.712ZM8.503 6.563l4.791 7.5h-8.906ZM4.387 15.938h8.906l-4.791 7.5Zm10.613 0.806L19.856 24.375H10.144ZM21.497 23.438l-4.791 -7.5h8.906Z"/><path id="_Transparent_Rectangle_" data-name="&amp;lt;Transparent Rectangle&amp;gt;" class="cls-1" width="32" height="32" d="M0 0H30V30H0V0z"/></svg>>   <span>Integration and API Testing</span><img class="arrow1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN_4UBLdr2DLApx9jKRHCp2m16xFzeN1R2gw&s" alt="Arrow Icon">
           </div>
           <div class="coaching-hidden">
+          <div class="coaching-popup">
             <h4>Integration Testing</h4>
             <p>Ensure seamless functioning of interconnected software systems by verifying that different modules and services work together as intended.</p>
             <p>Detect and resolve integration issues early, ensuring smooth communication and data flow between components.</p>
@@ -1432,19 +1427,19 @@
             <p>Validate endpoints, data formats, response times, and error handling to ensure robust API performance.</p>
           </div>
         </div>
-
+        </div>
         <!-- Card 2 -->
         <div class="coaching-wrapper" onclick="showPopup(event, this)">
           <div class="coaching-pill">
         <svg width="30px" height="30px" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h30v30H0z"/><path d="M3.75 3.75h10v10H3.75zm0 12.5h10v10H3.75zM16.25 3.75h10v10h-10zm0 12.5h10v10h-10z"/></g></svg>
             <span>Functional Testing</span><img class="arrow1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN_4UBLdr2DLApx9jKRHCp2m16xFzeN1R2gw&s" alt="Arrow Icon">
           </div>
-          <div class="coaching-hidden">
+          <div class="coaching-hidden"><div class="coaching-popup">
             <h4>Functional Testing</h4>
             <p>Validate that the software aligns with specified functionality requirements clearly and accurately.</p>
             <p>Test individual features and functionalities to ensure they perform as expected and meet user needs.</p>
           </div>
-        </div>
+        </div></div>
 
         <!-- Card 3 -->
         <div class="coaching-wrapper" onclick="showPopup(event, this)">
@@ -1452,12 +1447,12 @@
 <svg width="30px" height="30px" viewBox="0 0 0.9 0.9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.15 0.188v0.525a0.037 0.037 0 0 0 0.037 0.037h0.525" stroke="#000000" stroke-width="0.075" stroke-linecap="round" stroke-linejoin="round"/><path d="m0.675 0.337 -0.188 0.188 -0.094 -0.094L0.263 0.563" stroke="#000000" stroke-width="0.075" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span>Regression Testing</span><img class="arrow1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN_4UBLdr2DLApx9jKRHCp2m16xFzeN1R2gw&s" alt="Arrow Icon">
           </div>
-          <div class="coaching-hidden">
+          <div class="coaching-hidden"><div class="coaching-popup">
             <h4>Regression Testing</h4>
             <p>Detect any new software defects introduced after updates or changes using automated testing.</p>
             <p>Ensure that existing functionalities remain unaffected by new code changes, maintaining overall software stability.</p>
           </div>
-        </div>
+        </div></div>
 
         <!-- Card 4 -->
         <div class="coaching-wrapper" onclick="showPopup(event, this)">
@@ -1465,13 +1460,13 @@
            <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 1.95 1.95" enable-background="new 0 0 52 52" xml:space="preserve"><g><path d="M0.412 0.713h0.15c0.022 0 0.037 -0.011 0.037 -0.034V0.675c0 -0.214 0.184 -0.39 0.401 -0.375 0.199 0.015 0.349 0.188 0.349 0.39v-0.011c0 0.022 0.015 0.034 0.037 0.034h0.15c0.022 0 0.037 -0.011 0.037 -0.034V0.675c0 -0.341 -0.285 -0.615 -0.63 -0.6 -0.319 0.015 -0.563 0.285 -0.57 0.604 0.004 0.019 0.019 0.034 0.037 0.034"/><path d="M0.375 0.679v0.015z"/><path d="M1.725 1.012c0 -0.083 -0.068 -0.15 -0.15 -0.15H0.375c-0.083 0 -0.15 0.068 -0.15 0.15v0.713c0 0.083 0.068 0.15 0.15 0.15h1.2c0.083 0 0.15 -0.068 0.15 -0.15zM1.147 1.601c0.007 0.022 -0.011 0.049 -0.037 0.049h-0.274c-0.026 0 -0.041 -0.022 -0.037 -0.049l0.068 -0.225c-0.056 -0.037 -0.09 -0.105 -0.079 -0.18 0.015 -0.071 0.071 -0.128 0.146 -0.142 0.12 -0.022 0.225 0.064 0.225 0.176 0 0.06 -0.03 0.116 -0.079 0.146z"/></g></svg>
             <span>Security Testing</span><img class="arrow1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN_4UBLdr2DLApx9jKRHCp2m16xFzeN1R2gw&s" alt="Arrow Icon">
           </div>
-          <div class="coaching-hidden">
+          <div class="coaching-hidden"> <div class="coaching-popup">
             <h4>Security Testing</h4>
             <p>Identify vulnerabilities and ensure robust data protection measures are in place.</p>
             <p>Test for potential security threats, such as SQL injection, cross-site scripting (XSS), and data breaches, to safeguard sensitive information.</p>
           </div>
         </div>
-
+</div>
         <!-- Card 5 -->
         <div class="coaching-wrapper" onclick="showPopup(event, this)">
           <div class="coaching-pill">
@@ -1480,12 +1475,12 @@
 <svg width="30px" height="30px" viewBox="0 0 0.75 0.75" xmlns="http://www.w3.org/2000/svg"><path d="M0.15 0.263a0.037 0.037 0 0 1 0.037 0.037v0.3a0.037 0.037 0 1 1 -0.075 0V0.3a0.037 0.037 0 0 1 0.037 -0.037" fill="#black"/><path d="M0.3 0.412a0.037 0.037 0 0 1 0.037 0.037v0.15a0.037 0.037 0 1 1 -0.075 0v-0.15a0.037 0.037 0 0 1 0.037 -0.037" fill="#black"/><path d="M0.45 0.112a0.037 0.037 0 0 1 0.037 0.037v0.45a0.037 0.037 0 1 1 -0.075 0V0.15a0.037 0.037 0 0 1 0.037 -0.037" fill="#black"/><path d="M0.6 0.263a0.037 0.037 0 0 1 0.037 0.037v0.3a0.037 0.037 0 1 1 -0.075 0V0.3a0.037 0.037 0 0 1 0.037 -0.037" fill="black"/></svg>
             <span>Data-Driven Testing</span><img class="arrow1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN_4UBLdr2DLApx9jKRHCp2m16xFzeN1R2gw&s" alt="Arrow Icon">
           </div>
-          <div class="coaching-hidden">
+          <div class="coaching-hidden"><div class="coaching-popup">
             <h4>Data-Driven Testing</h4>
             <p>Utilize varying data inputs to validate software effectiveness thoroughly.</p>
             <p>Test how the application handles different data sets, ensuring it performs correctly under various conditions and scenarios.</p>
           </div>
-        </div>
+        </div></div>
 
         <!-- Card 6 -->
         <div class="coaching-wrapper" onclick="showPopup(event, this)">
@@ -1493,7 +1488,8 @@
             <img src="https://img.icons8.com/?size=100&id=DigX1t8JEfzE&format=png&color=000000" alt="icon">
             <span>ERP Testing</span><img class="arrow1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN_4UBLdr2DLApx9jKRHCp2m16xFzeN1R2gw&s" alt="Arrow Icon">
           </div>
-          <div class="coaching-hidden">
+          <div class="coaching-hidden"> <div class="coaching-popup">
+
             <h4>ERP Integration Testing</h4>
             <p>Ensure seamless connections between ERP modules and third-party applications.</p>
             <p>Verify that data flows correctly between ERP systems and external applications, ensuring integrated processes function smoothly.</p>
@@ -1508,55 +1504,41 @@
       </div>
     </div>
   </div>
-</section> <script>
-const leftContent = document.getElementById('leftContent');
-const rightContent = document.getElementById('rightContent');
-const popupColumn = document.getElementById('popupColumn');
-const activePopup = document.getElementById('activePopup');
+</section>
+<script>
+ document.querySelectorAll('.coaching-wrapper').forEach(wrapper => {
+    wrapper.addEventListener('click', function (event) {
+      event.stopPropagation();
+      const isActive = this.classList.contains('active');
 
-let currentActive = null;
+      // Close all open dropdowns
+      document.querySelectorAll('.coaching-wrapper.active').forEach(el => {
+        el.classList.remove('active');
+        el.querySelector('.coaching-hidden').style.display = 'none';
+        const arrow = el.querySelector('.arrow1');
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
+      });
 
-function showPopup(event, wrapper) {
-  event.stopPropagation();
+      // Toggle current one
+      if (!isActive) {
+        this.classList.add('active');
+        const dropdown = this.querySelector('.coaching-hidden');
+        if (dropdown) dropdown.style.display = 'block';
+        const arrow = this.querySelector('.arrow1');
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
 
-  // If the same card is clicked again, toggle it off
-  if (currentActive === wrapper) {
-    closePopup();
-    return;
-  }
-
-  // Otherwise, show this one
-  const hiddenContent = wrapper.querySelector('.coaching-hidden');
-  if (hiddenContent) {
-    activePopup.innerHTML = hiddenContent.innerHTML;
-    popupColumn.classList.add('active');
-    leftContent.classList.add('shift-left');
-    rightContent.classList.add('shift-right');
-
-    // Set active class for arrow toggle
-    document.querySelectorAll('.coaching-wrapper').forEach(el => el.classList.remove('active'));
-    wrapper.classList.add('active');
-
-    currentActive = wrapper;
-  }
-}
-
-function closePopup() {
-  popupColumn.classList.remove('active');
-  activePopup.innerHTML = '';
-  leftContent.classList.remove('shift-left');
-  rightContent.classList.remove('shift-right');
-
-  document.querySelectorAll('.coaching-wrapper').forEach(el => el.classList.remove('active'));
-  currentActive = null;
-}
-
-// Close when clicking anywhere else
-document.addEventListener('click', function (e) {
-  if (!e.target.closest('.coaching-wrapper') && !e.target.closest('#popupColumn')) {
-    closePopup();
-  }
-});
+  // Optional: close when clicking outside
+  document.body.addEventListener('click', function () {
+    document.querySelectorAll('.coaching-wrapper.active').forEach(el => {
+      el.classList.remove('active');
+      el.querySelector('.coaching-hidden').style.display = 'none';
+      const arrow = el.querySelector('.arrow1');
+      if (arrow) arrow.style.transform = 'rotate(0deg)';
+    });
+  });
 </script>
 <!line4!>
 <!line5!>
@@ -1697,6 +1679,43 @@ document.addEventListener('click', function (e) {
         text-align: center;
       }
     }
+    .contact-button {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-button a {
+  background: #31c781;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(49, 199, 129, 0.3);
+}
+
+/* Hover effect */
+.contact-button a:hover {
+  background: #28b470;
+  transform: translateY(-2px);
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+  .contact-button {
+    justify-content: center;
+  }
+
+  .contact-button a {
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -2752,24 +2771,17 @@ font-weight: 700;
 <!line9!>
 <!line10!><style>
   @media screen and (max-width: 1024px) {
-    div[style*="display: flex; flex-wrap: wrap; justify-content: space-between"] {
+    .contact-wrapper {
       flex-direction: column !important;
       margin: 0 20px !important;
       padding: 60px 0 !important;
     }
 
-    div[style*="flex: 1; min-width: 300px; max-width: 40%"] {
+    .contact-left,
+    .contact-right {
       max-width: 100% !important;
       padding-right: 0 !important;
       margin-bottom: 40px;
-    }
-
-    div[style*="flex: 1; min-width: 300px; max-width: 50%"] {
-      max-width: 100% !important;
-    }
-
-    form {
-      width: 100%;
     }
 
     form input,
@@ -2780,85 +2792,184 @@ font-weight: 700;
   }
 
   @media screen and (max-width: 600px) {
-    div[style*="display: flex; flex-wrap: wrap; justify-content: space-between"] h2 {
+    .contact-left h2 {
       font-size: 36px !important;
     }
 
-    div[style*="display: flex; flex-wrap: wrap; justify-content: space-between"] h3 {
+    .contact-right h3 {
       font-size: 18px !important;
     }
 
     form input,
-    form textarea {
-      font-size: 14px !important;
-    }
-
+    form textarea,
     form button {
       font-size: 14px !important;
       padding: 10px !important;
     }
+
+    .icon-heading svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .icon-heading h3 {
+      font-size: 16px;
+    }
+  }
+
+  .contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-family: 'Fustat', sans-serif;
+    padding: 100px 0;
+    margin: 100px 80px;
+    color: black;
+  }
+
+  .contact-left {
+    flex: 1;
+    min-width: 300px;
+    max-width: 40%;
+    padding-right: 20px;
+  }
+
+  .contact-right {
+    flex: 1;
+    min-width: 300px;
+    max-width: 50%;
+  }
+
+  .contact-left h2 {
+    font-size: 50px;
+    font-weight: 300;
+    margin: 0 0 20px;
+    line-height: 1.2;
+  }
+
+  .contact-left h2 span {
+    background-image: linear-gradient(267.43deg, #73ed7c 4.95%, #019297 97.92%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    color: black;
+  }
+
+  .contact-form textarea {
+    height: 100px;
+  }
+
+  .contact-form button {
+    padding: 12px;
+    border: none;
+    background: linear-gradient(to right, #019297 0%, #73ED7C 50%, #019297 100%);
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+
+  .info-block {
+    margin-bottom: 30px;
+  }
+
+  .icon-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(4, 42, 45);
+    margin-bottom: 10px;
+  }
+
+  .icon-heading svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .info-block p,
+  .info-block a {
+    margin: 0;
+    color: rgb(143, 143, 143);
+    text-decoration: none;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 200px;
+    border: 0;
+    border-radius: 10px;
   }
 </style>
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; font-family: 'Fustat', sans-serif; padding:100px 0p; color:black; margin:100px 80px;">
+<div class="contact-wrapper">
   <!-- Left Content -->
-  <div style="flex: 1; min-width: 300px; max-width: 40%; padding-right: 20px;">
-    <h2 style="font-size: 50px; font-weight:300; margin: 0 0 20px; line-height: 1.2;">
-       Talk with our <br><span style=" background-image: linear-gradient(267.43deg, #73ed7c 4.95%, #019297 97.92%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;">Experts</span>
+  <div class="contact-left">
+    <h2>
+      Talk with our <br>
+      <span>Experts</span>
     </h2>
-    
+
     <!-- Contact Form -->
-    <form style="display: flex; flex-direction: column; gap: 15px; padding:10px;">
-      <input type="text" placeholder="Your Name" style="padding: 10px; border: none; border-radius: 4px; color: black;">
-      <input type="email" placeholder="Your Email" style="padding: 10px; border: none; border-radius: 4px; color: black;">
-      <input type="text" placeholder="Your Mobile Number" style="padding: 10px; border: none; border-radius: 4px; color: black;">
-      <textarea placeholder="Your Message" style="padding: 10px; border: none; border-radius: 4px; color: black; height: 100px;"></textarea>
-      <button type="submit" style="padding: 12px; border: none; background: linear-gradient(to right,#019297 0%, #73ED7C 50%, #019297 100%);  background:linear-gradient(to right, #019297 0%, #019297 50%); color: white; font-weight: bold; border-radius: 25px; cursor: pointer;">
-        SEND MESSAGE →
-      </button>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Your Email" />
+      <input type="text" placeholder="Your Mobile Number" />
+      <textarea placeholder="Your Message"></textarea>
+      <button type="submit">SEND MESSAGE →</button>
     </form>
   </div>
 
   <!-- Right Content: Contact Info -->
-  <div style="flex: 1; min-width: 300px; max-width: 50%;">
-    <div style="margin-bottom: 30px;">
-      <h3 style="color:rgb(4, 42, 45); margin-bottom: 10px;">
-        <img src="https://img.icons8.com/ios-filled/20/00ff88/phone.png" style="vertical-align: middle; margin-right: 10px;">
-        Phone Support
-      </h3>
-      <p style="margin: 0; color:rgb(143,143,143);">+1 667-224-6999</p>
+  <div class="contact-right">
+    <div class="info-block">
+      <div class="icon-heading">
+        <svg width="30px" height="30px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#444" d="M0.457 0.375c-0.041 -0.004 -0.064 0.052 -0.094 0.068C0.315 0.469 0.225 0.375 0.225 0.375S0.131 0.285 0.154 0.236c0.019 -0.03 0.075 -0.052 0.071 -0.094 -0.004 -0.037 -0.086 -0.172 -0.128 -0.135C0.007 0.09 0 0.124 0 0.191c-0.004 0.116 0.146 0.263 0.146 0.263 0.015 0.015 0.146 0.15 0.263 0.146 0.068 0 0.101 -0.007 0.184 -0.098 0.037 -0.041 -0.094 -0.124 -0.135 -0.128"/>
+        </svg>
+        <h3>Phone Support</h3>
+      </div>
+      <p>+1 667-224-6999</p>
     </div>
 
-    <div style="margin-bottom: 30px;">
-      <h3 style="color:rgb(4, 42, 45); margin-bottom: 10px;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPWwZbD0TV2PuaEB96Ghr9WKnUoh3IfxafRQ&s" 
-             style="vertical-align: middle; margin-right: 10px;height:20px;weight:20px;" 
-             alt="Email Icon">
-        Email Us
-      </h3>
-      <p style="margin: 0; color:rgb(143,143,143);">
-        <a href="mailto:marcom@sailotech.com" style="color:rgb(143,143,143); text-decoration: none;">
-          marcom@sailotech.com
-        </a>
+    <div class="info-block">
+      <div class="icon-heading">
+        <svg width="30px" height="30px" viewBox="0 0 1.35 1.35" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.212 0.225a0.075 0.075 0 0 0 -0.015 0h-1.05a0.075 0.075 0 0 0 -0.02 0.003l0.542 0.54Z"/>
+          <path d="m1.268 0.277 -0.546 0.544a0.075 0.075 0 0 1 -0.106 0L0.075 0.281a0.075 0.075 0 0 0 -0.003 0.019v0.75a0.075 0.075 0 0 0 0.075 0.075h1.05a0.075 0.075 0 0 0 0.075 -0.075V0.3a0.075 0.075 0 0 0 -0.004 -0.023"/>
+        </svg>
+        <h3>Email Us</h3>
+      </div>
+      <p>
+        <a href="mailto:marcom@sailotech.com">marcom@sailotech.com</a>
       </p>
     </div>
 
-    <div style="margin-bottom: 30px;">
-      <h3 style="color:rgb(4, 42, 45); margin-bottom: 10px;">
-        <img src="https://img.icons8.com/ios-filled/20/00ff88/marker.png" style="vertical-align: middle; margin-right: 10px;">
-        Address
-      </h3>
-      <p style="margin: 0; color:rgb(143,143,143);">10490 Little Patuxent Pkwy, Suite 600, Columbia, MD 21044</p>
+    <div class="info-block">
+      <div class="icon-heading">
+        <svg width="30px" height="30px" viewBox="0 0 3.75 3.75" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.837 0.71a0.89 0.89 0 0 0 -0.89 0.894c0 0.618 0.637 1.185 0.834 1.335a0.092 0.092 0 0 0 0.117 0c0.197 -0.154 0.829 -0.717 0.829 -1.335A0.89 0.89 0 0 0 1.837 0.71m0 1.264a0.375 0.375 0 1 1 0.375 -0.375 0.375 0.375 0 0 1 -0.375 0.375"/>
+        </svg>
+        <h3>Address</h3>
+      </div>
+      <p>10490 Little Patuxent Pkwy, Suite 600, Columbia, MD 21044</p>
     </div>
 
-    <!-- Google Map -->
-    <div style="margin-top: 20px;">
-      <iframe src="https://www.google.com/maps?q=10490+Little+Patuxent+Pkwy,+Columbia,+MD+21044&output=embed" width="100%" height="200" frameborder="0" style="border:0; border-radius: 10px;" allowfullscreen></iframe>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps?q=10490+Little+Patuxent+Pkwy,+Columbia,+MD+21044&output=embed" allowfullscreen></iframe>
     </div>
   </div>
 </div>
-
-<!line10!>
